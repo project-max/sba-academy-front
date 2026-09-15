@@ -1,0 +1,44 @@
+{
+  "name": "sba-academy",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.19"
+  },
+  "simple-git-hooks": {
+    "commit-msg": "node scripts/check-commit-msg.mjs $1"
+  },
+  "scripts": {
+    "postinstall": "nuxi prepare && simple-git-hooks",
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "generate": "nuxi generate",
+    "preview": "nuxi preview",
+    "lint": "eslint .",
+    "lint:fsd": "steiger ./src",
+    "typecheck": "nuxi typecheck",
+    "check": "npm run lint && npm run lint:fsd && npm run typecheck && npm run generate"
+  },
+  "dependencies": {
+    "@vueuse/core": "^14.4.0",
+    "embla-carousel-vue": "^8.6.0",
+    "motion-v": "^2.3.0",
+    "nuxt": "^4.5.1",
+    "vue": "^3.5.40",
+    "vue-router": "^5.2.0"
+  },
+  "devDependencies": {
+    "@feature-sliced/steiger-plugin": "^0.7.0",
+    "@nuxt/eslint": "^1.16.0",
+    "@nuxt/fonts": "^0.14.0",
+    "eslint": "^10.8.0",
+    "eslint-import-resolver-typescript": "^4.4.5",
+    "eslint-plugin-boundaries": "^7.1.0",
+    "sass": "^1.102.0",
+    "sharp": "^0.35.3",
+    "simple-git-hooks": "^2.13.1",
+    "steiger": "^0.6.0",
+    "typescript": "~6.0.3",
+    "vue-tsc": "^3.3.9"
+  }
+}

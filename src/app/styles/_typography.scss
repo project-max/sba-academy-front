@@ -1,0 +1,71 @@
+// Токены типографики (дизайн, 2026-08-11). Шрифт — Onest (в дизайн-документе
+// назван «Onset»; такого шрифта не существует, заведён как Onest — Google Fonts,
+// SIL OFL, полная кириллица, вариативный; сверено с набором начертаний дизайна).
+//
+// Использование: тег — по семантике, класс — по шкале из макета:
+//   <h1 class="display-l">…</h1>  <p class="body-l">…</p>
+// Произвольные font-size / font-weight / letter-spacing в компонентах ЗАПРЕЩЕНЫ —
+// только классы шкалы. Нет подходящего стиля — вопрос дизайнеру, не самодеятельность.
+//
+// px из макета переведены в rem (base 16) — уважаем пользовательский масштаб;
+// line-height — безразмерный (сохраняет пропорцию макета), letter-spacing — в em.
+//
+// Адаптивная шкала (макет «Landing — Mobile 390», 2026-08-15; расширена на
+// планшет 2026-08-24): ниже 1200 крупные стили сдвигаются на ступень вниз
+// (display-l → значения heading-l и т.д.), остальное не меняется.
+// Переопределения — внизу файла.
+
+@use 'sass:map';
+@use 'breakpoints' as bp;
+
+:root {
+  --font-sans: 'Onest', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+// name: (size rem [px макета], line — lh/size, spacing em [% макета], weight)
+$type-scale: (
+  'display-xl': (size: 5rem,      line: 1.05,   spacing: -0.025em, weight: 800), // 80/84, -2.5%
+  'display-l':  (size: 4rem,      line: 1.0625, spacing: -0.02em,  weight: 800), // 64/68, -2%
+  'heading-l':  (size: 2.375rem,  line: 1.2105, spacing: -0.015em, weight: 700), // 38/46, -1.5%
+  'heading-m':  (size: 1.75rem,   line: 1.2143, spacing: -0.01em,  weight: 700), // 28/34, -1%
+  'heading-s':  (size: 1.25rem,   line: 1.3,    spacing: -0.005em, weight: 600), // 20/26, -0.5%
+  'body-l':     (size: 1.125rem,  line: 1.5556, spacing: 0,        weight: 400), // 18/28
+  'body-m':     (size: 1rem,      line: 1.5,    spacing: 0,        weight: 400), // 16/24
+  'body-s':     (size: 0.875rem,  line: 1.4286, spacing: 0,        weight: 400), // 14/20
+  'label-m':    (size: 0.875rem,  line: 1.1429, spacing: 0,        weight: 500), // 14/16
+  'label-s':    (size: 0.75rem,   line: 1.3333, spacing: 0.02em,   weight: 500), // 12/16, +2%
+);
+
+@each $name, $t in $type-scale {
+  .#{$name} {
+    font-size: map.get($t, size);
+    line-height: map.get($t, line);
+    letter-spacing: map.get($t, spacing);
+    font-weight: map.get($t, weight);
+  }
+}
+
+// ── адаптивные переопределения: класс → значения соседней ступени ───────
+// (по макету 390: заголовки секций 38/700, карточек 28/700, подзаголовки 20/600)
+// Действует на всём диапазоне ниже десктопа: планшетной раскладке десктопные
+// кегли велики так же, как мобильной (решение пользователя 2026-08-24).
+$adaptive-remap: (
+  'display-xl': 'display-l',
+  'display-l': 'heading-l',
+  'heading-l': 'heading-m',
+  'heading-m': 'heading-s',
+  'body-l': 'body-m',
+);
+
+@include bp.tablet-down {
+  @each $name, $target in $adaptive-remap {
+    $t: map.get($type-scale, $target);
+
+    .#{$name} {
+      font-size: map.get($t, size);
+      line-height: map.get($t, line);
+      letter-spacing: map.get($t, spacing);
+      font-weight: map.get($t, weight);
+    }
+  }
+}

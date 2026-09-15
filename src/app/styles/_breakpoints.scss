@@ -1,0 +1,64 @@
+// Брейкпоинты (решение 2026-08-15, этап адаптива).
+// Дизайн-макеты: 1440 (десктоп) и 390 (мобильный); промежуточные — сами:
+//   < 768        — мобильная раскладка (макет 390, тянется на 320–767)
+//   768–1199     — планшет: промежуточные решения (сетки в 2 колонки и т.п.)
+//   ≥ 1200       — десктоп как есть (контейнер плавно сжимается от 1440)
+// Миксины доступны во всех SCSS автоматически (vite additionalData в nuxt.config)
+
+$bp-mobile-max: 47.9375rem; // 767px
+$bp-tablet-max: 74.9375rem; // 1199px
+
+@mixin mobile {
+  @media (max-width: $bp-mobile-max) {
+    @content;
+  }
+}
+
+// всё, что шире мобильного (планшет и десктоп)
+@mixin above-mobile {
+  @media (min-width: #{$bp-mobile-max + 0.0625rem}) {
+    @content;
+  }
+}
+
+// планшет и уже (мобильный тоже наследует, если не переопределён)
+@mixin tablet-down {
+  @media (max-width: $bp-tablet-max) {
+    @content;
+  }
+}
+
+// только планшет (между мобильным и десктопом)
+@mixin tablet-only {
+  @media (min-width: #{$bp-mobile-max + 0.0625rem}) and (max-width: $bp-tablet-max) {
+    @content;
+  }
+}
+
+// точка схлопывания навигации хедера в бургер: полной пилюле с пятью пунктами
+// и «Личным кабинетом» тесно уже ниже 1024 (компонентная необходимость)
+$bp-nav-max: 63.9375rem; // 1023px
+
+@mixin nav-collapse {
+  @media (max-width: $bp-nav-max) {
+    @content;
+  }
+}
+
+// уже макетных 390 (поддерживаем от 320): длинные подписи в одну строку
+// перестают помещаться. Только для защиты от переполнения — раскладку
+// на этих точках не перестраиваем
+$bp-narrow-max: 24.3125rem; // 389px
+$bp-tiny-max: 22.4375rem; // 359px — узкие Android и iPhone SE 1-го поколения
+
+@mixin narrow {
+  @media (max-width: $bp-narrow-max) {
+    @content;
+  }
+}
+
+@mixin tiny {
+  @media (max-width: $bp-tiny-max) {
+    @content;
+  }
+}

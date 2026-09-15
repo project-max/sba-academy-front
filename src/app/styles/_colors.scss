@@ -1,0 +1,76 @@
+// Цветовые токены дизайна (палитра от дизайнера, 2026-08-11).
+// Имена 1:1 с дизайн-документом — не переименовывать без синхронизации
+// (исключение: border-subtitle из исходного списка заведён как border-subtle,
+// решение 2026-08-11 — сверить с дизайн-документом).
+//
+// Использование в компонентах: color: var(--text-primary). Сырые hex ЗАПРЕЩЕНЫ.
+// Для темозависимых свойств брать семантические токены (surface-* / text-* / border-*),
+// палитру (brand-* / accent-*) — только для декоративных брендовых элементов.
+//
+// Темизация заложена заранее: тёмной темы в дизайне пока нет — когда появится,
+// заполнить theme-dark, раскомментировать блоки подключения внизу и сменить
+// color-scheme на `light dark`. Компоненты при этом не меняются.
+
+// ── Палитра: примитивы бренда, от темы не зависят ────────────────────
+
+:root {
+  // Бренд (violet, violet-bright и lime обновлены дизайнером 2026-08-14,
+  // lime-tint — 2026-08-15; было #5000BE / #9B67F9 / #D4FF5A / #E6F4C1;
+  // ink — 2026-09-14, было #202C10)
+  --brand-violet: #4f3a8c;
+  --brand-violet-bright: #8e79c4;
+  --brand-lime: #c9e88a;
+  --brand-lime-tint: #e9efd6;
+  --brand-ink: #262b1f;
+
+  // Акценты (pale/mint/ice/grey обновлены дизайнером 2026-08-14 —
+  // было #CCC2E1 / #98D5CB / #CEE0E2 / #DBDBDB)
+  --accent-lavender: #8f80d0;
+  --accent-lavender-pale: #cfc9dc;
+  --accent-mint: #a5c9c2;
+  --accent-ice: #d2dedf;
+  --accent-grey: #dbdbd8;
+}
+
+// ── Семантические токены: меняются между темами ──────────────────────
+
+@mixin theme-light {
+  // Поверхности
+  --surface-page: #ffffff;
+  --surface-cream: #f2efea;
+  --surface-nav: #f5f5f3;
+
+  // Текст
+  --text-primary: var(--brand-ink);
+  --text-muted: #5f6157;
+  --text-inverse: #ffffff;
+  --text-on-lime: var(--brand-ink);
+
+  // Границы
+  --border-subtle: #e3e0d9;
+  --border-on-dark: #7b4bd6;
+}
+
+// @mixin theme-dark {
+//   TODO: значения от дизайнера — тёмной темы в макетах ещё нет
+// }
+
+// ── Подключение ──────────────────────────────────────────────────────
+
+:root {
+  color-scheme: light; // при появлении тёмной темы: `light dark`
+
+  @include theme-light;
+}
+
+// Явный выбор пользователя — переключатель темы ставит data-theme на <html>:
+// :root[data-theme='dark'] {
+//   @include theme-dark;
+// }
+
+// Системная тема (если явного выбора нет):
+// @media (prefers-color-scheme: dark) {
+//   :root:not([data-theme='light']) {
+//     @include theme-dark;
+//   }
+// }

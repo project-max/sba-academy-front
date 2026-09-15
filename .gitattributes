@@ -1,0 +1,16 @@
+# Единые LF в репозитории (разработка на Windows)
+* text=auto eol=lf
+
+# Бинарники — без текстовой нормализации
+*.png -text
+*.jpg -text
+*.jpeg -text
+*.webp -text
+*.avif -text
+*.svg text
+*.ico -text
+*.woff -text
+*.woff2 -text
+*.mp4 -text
+*.webm -text
+*.pdf -text

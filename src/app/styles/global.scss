@@ -1,0 +1,77 @@
+// Глобальная база. Цвета — _colors.scss (2026-08-11), типографика — _typography.scss
+// (2026-08-11); брейкпоинты/z-index — по мере поступления дизайна
+
+@use 'colors';
+@use 'layout';
+@use 'typography';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  // плавные якорные переходы без JS (docs/architecture.md → «Анимации»)
+  scroll-behavior: smooth;
+  // якоря и фокусируемые элементы не подлезают под sticky-хедер (96px)
+  scroll-padding-top: 6rem;
+
+  @include bp.mobile {
+    scroll-padding-top: 4.75rem; // мобильная шапка 76px
+  }
+}
+
+// страница не прокручивается, пока открыт мобильный оверлей (меню бургера)
+.u-scroll-lock {
+  overflow: hidden;
+}
+
+// блок, которого нет в мобильной версии (решение заказчика 2026-09-14):
+// вешается на корень секции в композиции страницы. !important — утилита
+// обязана перебить любой display корня виджета
+.u-mobile-hidden {
+  @include bp.mobile {
+    display: none !important;
+  }
+}
+
+// зеркальная утилита: элемент есть только в мобильной версии. Выше
+// мобильного скрывается, на мобильном display элемента не трогаем
+.u-mobile-only {
+  @include bp.above-mobile {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  // семейство задано литералом (не var) намеренно: @nuxt/fonts находит шрифт
+  // по декларации font-family и подставляет метрический fallback против CLS
+  margin: 0;
+  font-family: 'Onest', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1rem; // base = body-m (16/24)
+  line-height: 1.5;
+  color: var(--text-primary);
+  background-color: var(--surface-page);
+}
+
+// формы не наследуют шрифт по умолчанию — чиним
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}

@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { useHead } from '#imports';
 import { TeachersPage } from '@/pages/teachers';
+import { useSeo } from '@/shared/lib';
 
-useHead({
+useSeo({
   title: 'Кто ведёт — SBA Academy',
-  meta: [
-    { name: 'description', content: 'Преподаватели и эксперты SBA Academy.' },
-  ],
+  description:
+    'Преподаватели SBA Academy: первые лица экосистемы DecimalChain, топ-менеджеры компании и приглашённые эксперты по финансам, безопасности и нейросетям.',
 });
 </script>
 

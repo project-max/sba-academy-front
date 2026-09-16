@@ -51,7 +51,7 @@ export const footerContent: FooterContent = {
         { label: 'Экосистема DecimalChain', href: '/ecosystem' },
         // TODO: рейтинг на старом сайте вёл на rating.php — куда ведём теперь?
         { label: 'Рейтинг по отзывам', href: '/about' },
-        { label: 'Контакты', href: '/kontakty' },
+        { label: 'Контакты', href: '/contacts' },
       ],
     },
     {

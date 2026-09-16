@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { useHead } from '#imports';
 import { EcosystemPage } from '@/pages/ecosystem';
+import { useSeo } from '@/shared/lib';
 
-useHead({
+useSeo({
   title: 'Экосистема — SBA Academy',
-  meta: [
-    { name: 'description', content: 'Экосистема SBA Academy: DecimalChain, Bit.Team, кошельки, NFT.' },
-  ],
+  description: 'Экосистема SBA Academy: DecimalChain, Bit.Team, кошельки, NFT.',
 });
 </script>
 

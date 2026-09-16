@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { courses } from '@/entities/course';
-import { AppButton, ArrowIcon } from '@/shared/ui';
+import { AppButton } from '@/shared/ui';
 import { formatPrice } from '@/shared/lib';
 import { flagshipContent } from '../model/flagship-content';
 
@@ -36,9 +36,6 @@ const course = courses.find((c) => c.id === flagshipContent.courseId);
             size="s"
           >
             {{ flagshipContent.ctaLabel }}
-            <template #icon>
-              <ArrowIcon />
-            </template>
           </AppButton>
         </div>
       </div>
@@ -141,18 +138,10 @@ const course = courses.find((c) => c.id === flagshipContent.courseId);
   &__cta {
     display: flex;
 
-    // в макете флагманской карточки круг 52×52 при капсуле s — точечное
-    // отклонение; повторится в других секциях — заведём размер в AppButton
-    :deep(.button__icon) {
-      width: 3.25rem;
-      height: 3.25rem;
-    }
-
     // заливка кнопки в карточке цены — кремовая, не белая (#F2EFEA из макета
     // 2026-08-14); глобально white-вариант не трогаем — на кремовых карточках
     // программ он должен остаться белым
-    :deep(.button__label),
-    :deep(.button__icon) {
+    :deep(.button__label) {
       background-color: var(--surface-cream);
     }
 

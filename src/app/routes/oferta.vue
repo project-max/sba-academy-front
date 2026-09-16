@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useHead } from '#imports';
 import { OfferPage } from '@/pages/offer';
+import { useSeo } from '@/shared/lib';
 
-useHead({
+useSeo({
   title: 'Оферта — SBA Academy',
-  meta: [{ name: 'robots', content: 'noindex' }],
+  noindex: true,
 });
 </script>
 

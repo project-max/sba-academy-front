@@ -87,7 +87,7 @@ defineProps<{ teacher: Teacher }>();
     display: inline-flex;
     align-items: center;
     padding: 0.4375rem 0.875rem; // 7px 14px из макета (высота пилюли 30)
-    color: var(--text-primary);
+    color: var(--text-muted); // правка пользователя 2026-09-15
     background-color: var(--surface-page);
     border-radius: 999px;
   }

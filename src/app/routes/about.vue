@@ -1,16 +1,11 @@
 <script setup lang="ts">
-import { useHead } from '#imports';
 import { AboutPage } from '@/pages/about';
+import { useSeo } from '@/shared/lib';
 
-useHead({
+useSeo({
   title: 'О школе — SBA Academy',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'SBA Academy: криптообразование без обещаний доходности — принципы обучения, история экосистемы и образовательное партнёрство.',
-    },
-  ],
+  description:
+    'SBA Academy: криптообразование без обещаний доходности — принципы обучения, история экосистемы и образовательное партнёрство.',
 });
 </script>
 

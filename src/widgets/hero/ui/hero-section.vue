@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { stats } from '@/entities/stat';
-import { AppButton, ArrowIcon } from '@/shared/ui';
+import { AppButton } from '@/shared/ui';
 import { heroContent } from '../model/hero-content';
 
 const usersStat = stats.find((s) => s.id === 'ecosystem-users');
@@ -22,9 +22,6 @@ const usersStat = stats.find((s) => s.id === 'ecosystem-users');
 
       <AppButton :to="heroContent.cta.href" variant="lime" size="l">
         {{ heroContent.cta.label }}
-        <template #icon>
-          <ArrowIcon />
-        </template>
       </AppButton>
     </div>
 
@@ -117,11 +114,6 @@ const usersStat = stats.find((s) => s.id === 'ecosystem-users');
       // кнопка hero (size l) на мобиле ужимается до высоты 48 (макет 390)
       :deep(.button__label) {
         padding-block: 1rem; // 16px: капсула высотой 48
-      }
-
-      :deep(.button__icon) {
-        width: 3rem; // 48px — вровень с капсулой
-        height: 3rem;
       }
     }
   }

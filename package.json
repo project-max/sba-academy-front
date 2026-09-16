@@ -17,7 +17,8 @@
     "lint": "eslint .",
     "lint:fsd": "steiger ./src",
     "typecheck": "nuxi typecheck",
-    "check": "npm run lint && npm run lint:fsd && npm run typecheck && npm run generate"
+    "check": "npm run lint && npm run lint:fsd && npm run typecheck && npm run generate",
+    "postgenerate": "node scripts/make-sitemap.js"
   },
   "dependencies": {
     "@vueuse/core": "^14.4.0",

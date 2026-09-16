@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useHead } from '#imports';
 import { PrivacyPage } from '@/pages/privacy';
+import { useSeo } from '@/shared/lib';
 
-useHead({
+useSeo({
   title: 'Политика конфиденциальности — SBA Academy',
-  meta: [{ name: 'robots', content: 'noindex' }],
+  noindex: true,
 });
 </script>
 

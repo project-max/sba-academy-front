@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { teachers, TeacherCard } from '@/entities/teacher';
-import { AppButton, ArrowIcon } from '@/shared/ui';
+import { AppButton } from '@/shared/ui';
 import { teacherContent } from '../model/teacher-content';
 
 const featured = teachers.find((t) => t.featured);
@@ -62,9 +62,6 @@ const experts = teachers.filter((t) => !t.featured);
           <h3 class="heading-l teacher__text-card-title">{{ teacherContent.allCard.title }}</h3>
           <AppButton :to="teacherContent.allCard.href" variant="white" size="s">
             {{ teacherContent.allCard.ctaLabel }}
-            <template #icon>
-              <ArrowIcon />
-            </template>
           </AppButton>
         </div>
       </div>

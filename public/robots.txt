@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /privacy
+Disallow: /oferta
+
+Sitemap: https://academysba.pro/sitemap.xml

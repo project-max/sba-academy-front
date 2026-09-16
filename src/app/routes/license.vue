@@ -1,16 +1,11 @@
 <script setup lang="ts">
-import { useHead } from '#imports';
 import { LicensePage } from '@/pages/license';
+import { useSeo } from '@/shared/lib';
 
-useHead({
+useSeo({
   title: 'Лицензии и документы — SBA Academy',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'Образовательная лицензия SBA Academy, документы выпускника, правовые документы и реквизиты.',
-    },
-  ],
+  description:
+    'Образовательная лицензия SBA Academy, документы выпускника, правовые документы и реквизиты.',
 });
 </script>
 

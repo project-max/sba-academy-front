@@ -4,7 +4,7 @@
 
 ## Реализация в коде (каркас готов, секции — с дизайном)
 
-Конвенция именования (обновлена заказчиком 2026-08-14/15): **роуты — английским kebab-case, совпадают с именем page-слайса** (`/programs`, `/lectors`, `/ecosystem`, `/about`, `/license`); транслит референса (`/programmy`, `/prepodavateli`, `/ekosistema`, `/o-shkole`, `/litsenziya`) не используется. Пока на транслите/легаси остаются `/kontakty`, `/privacy`, `/oferta`.
+Конвенция именования (обновлена заказчиком 2026-08-14/15): **роуты — английским kebab-case, совпадают с именем page-слайса** (`/programs`, `/lectors`, `/ecosystem`, `/about`, `/license`); транслит референса (`/programmy`, `/prepodavateli`, `/ekosistema`, `/o-shkole`, `/litsenziya`) не используется. Пока на транслите/легаси остаются `/privacy`, `/oferta` (`/kontakty` → `/contacts` с 2026-09-15).
 
 | Роут | Файл роута (`src/app/routes/`) | Page-слайс (`src/pages/`) |
 |---|---|---|
@@ -14,15 +14,17 @@
 | `/ecosystem` | `ecosystem.vue` | `ecosystem` |
 | `/about` | `about.vue` | `about` |
 | `/license` | `license.vue` | `license` |
-| `/kontakty` | `kontakty.vue` | `contacts` |
+| `/contacts` | `contacts.vue` | `contacts` |
 | `/privacy` | `privacy.vue` | `privacy` |
 | `/oferta` | `oferta.vue` | `offer` |
 
 Конвенции метаданных (обязательны, см. skill `/fsd-page`):
 
+- Метатеги задаёт `useSeo()` из `shared/lib` в файле роута — один вызов даёт title, description, canonical, Open Graph и Twitter-карточку (домен и картинка — `siteConfig` в `shared/config`).
 - `title` вида `«<Название> — SBA Academy»`; на главной — развёрнутый брендовый.
 - `description` обязателен для всех индексируемых страниц.
-- `/privacy` и `/oferta` — `robots: noindex`.
+- `/privacy` и `/oferta` — `noindex: true` (в `robots.txt` они же в `Disallow`).
+- `sitemap.xml` собирается автоматически после `npm run generate` (`scripts/make-sitemap.js`) из фактических страниц статики; `robots.txt`, фавикон и OG-картинка (`scripts/make-og-image.js`, временная до карточки от дизайнера) лежат в `public/`.
 
 ## Статус страниц референса
 
@@ -34,7 +36,7 @@
 | `/ecosystem` | Экосистема | ❌ 404 (есть в навигации) |
 | `/about` (на референсе `/o-shkole`) | О школе | ✅ свёрстана по SVG-макету (2026-08-14) |
 | `/license` (на референсе `/litsenziya`) | Лицензии и документы | ✅ свёрстана по SVG-макету (2026-08-14) |
-| `/kontakty` | Контакты | ❌ 404 (есть в footer) |
+| `/contacts` (на референсе `/kontakty`) | Контакты | ❌ 404 (есть в footer) |
 | `/privacy` | Политика конфиденциальности | ❌ 404 (есть в footer) |
 | `/oferta` | Оферта | ❌ 404 (есть в footer) |
 | — | `https://cabinet.academysba.pro` | внешняя ссылка (личный кабинет) |

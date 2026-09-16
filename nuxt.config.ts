@@ -20,6 +20,16 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'ru' },
+      // фавикон — плитка логотипа из шапки (brand-violet + «SBA» Onest 500),
+      // сгенерирован из контуров шрифта; SVG — основной, ICO — для старых
+      // браузеров, PNG — для iOS и манифеста
+      link: [
+        { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
+        { rel: 'icon', href: '/favicon.ico', sizes: '32x32' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+        { rel: 'manifest', href: '/site.webmanifest' },
+      ],
+      meta: [{ name: 'theme-color', content: '#4f3a8c' }],
     },
   },
 

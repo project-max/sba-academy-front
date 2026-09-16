@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { courses } from '@/entities/course';
-import { AppButton, ArrowIcon, LinkBar } from '@/shared/ui';
+import { AppButton, LinkBar } from '@/shared/ui';
 import { programContent } from '../model/program-content';
 
 const previewCourses = programContent.courseIds
@@ -44,9 +44,6 @@ const previewCourses = programContent.courseIds
             size="m"
           >
             {{ programContent.ctaLabel }}
-            <template #icon>
-              <ArrowIcon />
-            </template>
           </AppButton>
         </article>
       </div>
@@ -159,18 +156,17 @@ const previewCourses = programContent.courseIds
     margin: 0;
   }
 
+  // кнопка прижата к низу карточки: соседние карточки в ряду растянуты
+  // до одной высоты, и без auto под кнопкой короткой карточки оставалась
+  // пустота; 28px из макета — минимальный зазор до меты
   &__cta {
-    margin-top: 1.75rem; // 28px из макета
+    margin-top: auto;
+    padding-top: 1.75rem;
 
     @include bp.mobile {
-      // капсула и круг 52px из мобильного макета (390)
+      // капсула 52px из мобильного макета (390)
       :deep(.button__label) {
         padding-block: 1.125rem; // 52 = 18 + 16 (label-m) + 18
-      }
-
-      :deep(.button__icon) {
-        width: 3.25rem; // 52px
-        height: 3.25rem;
       }
     }
   }

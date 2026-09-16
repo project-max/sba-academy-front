@@ -175,6 +175,7 @@ onBeforeUnmount(() => {
     position: relative;
     z-index: 1; // над панелью мобильного меню
     display: flex;
+    flex-shrink: 0; // название не сжимается: иначе на планшете ломалось в 3 строки
     align-items: center;
     gap: 0.75rem;
     color: var(--text-primary);
@@ -208,12 +209,24 @@ onBeforeUnmount(() => {
     background-color: var(--surface-nav);
     border-radius: 999px;
 
+    // на планшете (1024–1199) шапке тесно: лого + пилюля + «Личный кабинет»
+    // шире контентной области на ~70px — ужимаем пилюлю (наше решение)
+    @include bp.tablet-only {
+      gap: 1.25rem; // 20px
+      padding-inline: 1rem; // 16px
+    }
+
     @include bp.nav-collapse {
       display: none; // ниже 1024 навигация — в меню бургера
     }
   }
 
   &__cabinet {
+    // на планшете капсула уже: 28px → 20px по бокам (см. &__nav)
+    @include bp.tablet-only {
+      padding-inline: 1.25rem;
+    }
+
     @include bp.nav-collapse {
       display: none;
     }

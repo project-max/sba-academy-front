@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { audiences } from '@/entities/audience';
-import { AppButton, ArrowIcon } from '@/shared/ui';
+import { AppButton } from '@/shared/ui';
 import { audienceContent } from '../model/audience-content';
 </script>
 
@@ -43,9 +43,6 @@ import { audienceContent } from '../model/audience-content';
 
           <AppButton class="audience__cta" :to="card.href" variant="white" size="s">
             {{ audienceContent.ctaLabel }}
-            <template #icon>
-              <ArrowIcon />
-            </template>
           </AppButton>
         </li>
       </ul>

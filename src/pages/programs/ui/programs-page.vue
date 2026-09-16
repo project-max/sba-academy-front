@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { cabinetUrl } from '@/shared/config';
-import { LinkBar } from '@/shared/ui';
 import { courses } from '@/entities/course';
 import { programsPageContent } from '../model/programs-page-content';
 import CourseCard from './course-card.vue';
@@ -27,10 +25,6 @@ const pageCourses = content.courseIds
         <div class="programs__list">
           <CourseCard v-for="course in pageCourses" :key="course.id" :course="course" />
         </div>
-
-        <LinkBar class="programs__extra" :href="cabinetUrl" icon="bright">
-          {{ content.extraCourses.label }}
-        </LinkBar>
       </div>
     </section>
   </div>
@@ -77,15 +71,6 @@ const pageCourses = content.courseIds
 
     @include bp.mobile {
       gap: 1rem; // 16px из мобильного макета (390)
-    }
-  }
-
-  &__extra {
-    margin-top: 2rem; // 32px из макета
-    border-radius: 2.5rem;
-
-    @include bp.mobile {
-      margin-top: 1.5rem;
     }
   }
 }

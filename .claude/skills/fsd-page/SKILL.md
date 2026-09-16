@@ -9,7 +9,7 @@ description: Создать новую страницу сайта — тонк�
 
 ## Шаги
 
-1. **Сверься с `docs/pages.md`** (таблица «Реализация в коде»). Конвенция именования: **роут — транслитом как в URL** (`oferta.vue`, `kontakty.vue`), **page-слайс — английским kebab-case** (`offer`, `contacts`). Если страницы нет в инвентаризации — сначала добавь её в таблицу.
+1. **Сверься с `docs/pages.md`** (таблица «Реализация в коде»). Конвенция именования (решение заказчика 2026-08-15): **роут и page-слайс — английским kebab-case, одно имя** (`/contacts` → `contacts.vue` → `pages/contacts`); легаси на транслите остались только `/privacy` и `/oferta` (слайс `offer`). Если страницы нет в инвентаризации — сначала добавь её в таблицу.
 
 2. **Создай page-слайс:**
    ```
@@ -23,12 +23,12 @@ description: Создать новую страницу сайта — тонк�
    ```vue
    <!-- src/app/routes/programs.vue -->
    <script setup lang="ts">
-   import { useHead } from '#imports';
    import { ProgramsPage } from '@/pages/programs';
+   import { useSeo } from '@/shared/lib';
 
-   useHead({
+   useSeo({
      title: 'Программы обучения — SBA Academy',
-     meta: [{ name: 'description', content: '…' }],
+     description: '…',
    });
    </script>
 
@@ -38,7 +38,7 @@ description: Создать новую страницу сайта — тонк�
    ```
    Максимум ~10 строк. Никакой логики, разметки и данных в роуте.
 
-4. **Метаданные обязательны:** `useHead` с title вида `«<Название> — SBA Academy»` и description на русском; юридические страницы (privacy, oferta) — `robots: noindex`. Это маркетинговый сайт — SEO важно.
+4. **Метаданные обязательны:** `useSeo()` из `shared/lib` с title вида `«<Название> — SBA Academy»` и description на русском — он же ставит canonical, Open Graph и Twitter-карточку (домен/картинка — `siteConfig`); юридические страницы (privacy, oferta) — `noindex: true` плюс `Disallow` в `public/robots.txt`. Sitemap собирается сам после `generate`. Это маркетинговый сайт — SEO важно.
 
 5. **Навигация:** если страница должна быть в меню/футере — добавь её в `shared/config/navigation` (header/footer берут пункты оттуда, не хардкодят).
 

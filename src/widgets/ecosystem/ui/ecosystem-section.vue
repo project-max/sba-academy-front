@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { stats } from '@/entities/stat';
-import { AppButton, ArrowIcon } from '@/shared/ui';
+import { AppButton } from '@/shared/ui';
 import { ecosystemContent } from '../model/ecosystem-content';
 
 const yearsStat = stats.find((s) => s.id === ecosystemContent.statId);
@@ -63,9 +63,6 @@ const yearsStat = stats.find((s) => s.id === ecosystemContent.statId);
             size="l"
           >
             {{ ecosystemContent.cta.label }}
-            <template #icon>
-              <ArrowIcon />
-            </template>
           </AppButton>
         </div>
       </div>
